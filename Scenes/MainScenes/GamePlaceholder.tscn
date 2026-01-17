@@ -1,16 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://n4sgws5m8bwl"]
+[gd_scene load_steps=8 format=3 uid="uid://n4sgws5m8bwl"]
 
 [ext_resource type="Texture2D" uid="uid://55lvbcvg0fhv" path="res://Assets/Art/JapanCollectionVol2/Night2/1920x1080.png" id="1_3aw1r"]
 [ext_resource type="Theme" uid="uid://cnjo0f571voku" path="res://Scenes/FontScenes/Main Menu Buttons.tres" id="2_u0rqr"]
 [ext_resource type="Script" uid="uid://cbucngc1qijxl" path="res://Scripts/placeholder_go_back.gd" id="3_6ctwp"]
 [ext_resource type="Texture2D" uid="uid://de27fnuxo8tar" path="res://Assets/Art/MONKEY/OUTFIT2/01-Idle/01-Idle/FA_MONKEY_Idle_000.png" id="4_dqqau"]
+[ext_resource type="Script" uid="uid://b7swjebmjc82t" path="res://Scripts/Player.gd" id="4_wrylw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wrylw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrylw"]
+size = Vector2(1163, 20)
 
 [node name="GamePlaceholder" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(576.00006, 324.00003)
 scale = Vector2(0.6, 0.6000001)
 texture = ExtResource("1_3aw1r")
@@ -28,6 +31,7 @@ script = ExtResource("3_6ctwp")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Player"]
 position = Vector2(749, 546)
+script = ExtResource("4_wrylw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/CharacterBody2D"]
 position = Vector2(-5, 3)
@@ -38,5 +42,11 @@ shape = SubResource("CapsuleShape2D_wrylw")
 position = Vector2(4.9999995, -3.9999998)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_dqqau")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(577, 602)
+shape = SubResource("RectangleShape2D_wrylw")
 
 [connection signal="pressed" from="Background/Placeholder Go Back" to="Background/Placeholder Go Back" method="_on_pressed"]
