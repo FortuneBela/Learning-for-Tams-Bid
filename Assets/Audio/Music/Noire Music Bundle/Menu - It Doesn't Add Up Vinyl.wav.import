@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://pq1sspg3kwc8"
+path="res://.godot/imported/Menu - It Doesn't Add Up Vinyl.wav-f2bc72811d989182ba4edc557b238624.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Music/Noire Music Bundle/Menu - It Doesn't Add Up Vinyl.wav"
+dest_files=["res://.godot/imported/Menu - It Doesn't Add Up Vinyl.wav-f2bc72811d989182ba4edc557b238624.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

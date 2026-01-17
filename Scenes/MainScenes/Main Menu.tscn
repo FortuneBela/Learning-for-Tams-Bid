@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://blevywt6ly8n8"]
+
+[ext_resource type="Theme" uid="uid://cnjo0f571voku" path="res://Scenes/FontScenes/Main Menu Buttons.tres" id="1_yiv4o"]
+[ext_resource type="Script" uid="uid://ngdiifq5ciko" path="res://Scripts/main_menu.gd" id="1_ym8oi"]
+[ext_resource type="Script" uid="uid://d2h711utmd6db" path="res://Scripts/options_menu.gd" id="3_rnwuk"]
+[ext_resource type="AudioStream" uid="uid://pq1sspg3kwc8" path="res://Assets/Audio/Music/Noire Music Bundle/Menu - It Doesn't Add Up Vinyl.wav" id="4_mdr2u"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ym8oi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -59.0
+offset_right = 98.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Start Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_yiv4o")
+text = "Start"
+
+[node name="Options Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_yiv4o")
+text = "Options"
+
+[node name="Quit Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_yiv4o")
+text = "Quit"
+
+[node name="Options Menu" type="Node" parent="."]
+script = ExtResource("3_rnwuk")
+
+[node name="Options Panel" type="Panel" parent="Options Menu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Back Button" type="Button" parent="Options Menu/Options Panel"]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 140.0
+offset_bottom = 60.0
+theme = ExtResource("1_yiv4o")
+theme_override_font_sizes/font_size = 40
+text = "Back"
+
+[node name="Music Manager" type="Node" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Music Manager"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Music Manager"]
+stream = ExtResource("4_mdr2u")
+volume_db = -30.0
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="VBoxContainer/Start Button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options Button" to="Options Menu" method="_on_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit Button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Options Menu/Options Panel/Back Button" to="Options Menu" method="_on_back_button_pressed"]
