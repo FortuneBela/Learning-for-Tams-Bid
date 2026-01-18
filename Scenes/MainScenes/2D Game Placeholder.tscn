@@ -9,13 +9,12 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wrylw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrylw"]
-size = Vector2(1163, 20)
+size = Vector2(1357, 20)
 
 [node name="GamePlaceholder" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(576.00006, 324.00003)
-scale = Vector2(0.6, 0.6000001)
+position = Vector2(960, 540)
 texture = ExtResource("1_3aw1r")
 
 [node name="Placeholder Go Back" type="Button" parent="Background"]
@@ -30,7 +29,7 @@ script = ExtResource("3_6ctwp")
 [node name="Player" type="Node" parent="."]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Player"]
-position = Vector2(749, 546)
+position = Vector2(1245, 918)
 script = ExtResource("4_wrylw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/CharacterBody2D"]
@@ -44,9 +43,26 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_dqqau")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(688, 362)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(577, 602)
+position = Vector2(553.5, 602)
+shape = SubResource("RectangleShape2D_wrylw")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(2532, 24)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(553.5, 602)
+shape = SubResource("RectangleShape2D_wrylw")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(1334, 24)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(553.5, 602)
 shape = SubResource("RectangleShape2D_wrylw")
 
 [connection signal="pressed" from="Background/Placeholder Go Back" to="Background/Placeholder Go Back" method="_on_pressed"]
