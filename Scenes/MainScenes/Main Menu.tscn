@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://blevywt6ly8n8"]
+[gd_scene load_steps=7 format=3 uid="uid://blevywt6ly8n8"]
 
 [ext_resource type="Theme" uid="uid://cnjo0f571voku" path="res://Scenes/FontScenes/Main Menu Buttons.tres" id="1_yiv4o"]
 [ext_resource type="Script" uid="uid://ngdiifq5ciko" path="res://Scripts/main_menu.gd" id="1_ym8oi"]
 [ext_resource type="Script" uid="uid://d2h711utmd6db" path="res://Scripts/options_menu.gd" id="3_rnwuk"]
 [ext_resource type="AudioStream" uid="uid://pq1sspg3kwc8" path="res://Assets/Audio/Music/Noire Music Bundle/Menu - It Doesn't Add Up Vinyl.wav" id="4_mdr2u"]
+[ext_resource type="StyleBox" uid="uid://cvueednvnt2ca" path="res://Scenes/FontScenes/Main Menu Style.tres" id="4_mjyq2"]
 
 [sub_resource type="GDScript" id="GDScript_mdr2u"]
 script/source = "extends Node
@@ -18,6 +19,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ym8oi")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12156863, 0.105882354, 0.09019608, 1)
+
 [node name="Main Menu Buttons" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -25,10 +35,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -98.0
-offset_top = -59.0
-offset_right = 98.0
-offset_bottom = 59.0
+offset_left = -200.0
+offset_top = -148.0
+offset_right = 200.0
+offset_bottom = 148.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
@@ -52,23 +62,62 @@ text = "Quit"
 script = ExtResource("3_rnwuk")
 
 [node name="Options Panel" type="Panel" parent="Options Menu"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+custom_minimum_size = Vector2(1536, 864)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("4_mjyq2")
 
-[node name="PanelContainer" type="PanelContainer" parent="Options Menu/Options Panel"]
+[node name="Overall Margins" type="MarginContainer" parent="Options Menu/Options Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 192.0
-offset_right = -5.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="MarginContainer" type="MarginContainer" parent="Options Menu/Options Panel/PanelContainer"]
+[node name="Main H Splitter" type="HBoxContainer" parent="Options Menu/Options Panel/Overall Margins"]
+layout_mode = 2
+
+[node name="Left Panel" type="PanelContainer" parent="Options Menu/Options Panel/Overall Margins/Main H Splitter"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_mjyq2")
+
+[node name="Left Panel Margins" type="MarginContainer" parent="Options Menu/Options Panel/Overall Margins/Main H Splitter/Left Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Left Panel VBox" type="VBoxContainer" parent="Options Menu/Options Panel/Overall Margins/Main H Splitter/Left Panel/Left Panel Margins"]
+layout_mode = 2
+
+[node name="Back Button" type="Button" parent="Options Menu/Options Panel/Overall Margins/Main H Splitter/Left Panel/Left Panel Margins/Left Panel VBox"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("1_yiv4o")
+theme_override_font_sizes/font_size = 40
+text = "Back"
+
+[node name="Right Panel" type="PanelContainer" parent="Options Menu/Options Panel/Overall Margins/Main H Splitter"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("4_mjyq2")
+
+[node name="Right Panel Margins" type="MarginContainer" parent="Options Menu/Options Panel/Overall Margins/Main H Splitter/Right Panel"]
 layout_direction = 3
 layout_mode = 2
 theme_override_constants/margin_left = 50
@@ -76,65 +125,40 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Options Menu/Options Panel/PanelContainer/MarginContainer"]
+[node name="Right Panel Vbox" type="VBoxContainer" parent="Options Menu/Options Panel/Overall Margins/Main H Splitter/Right Panel/Right Panel Margins"]
 layout_mode = 2
+theme_override_constants/separation = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="Options Menu/Options Panel/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Master Volume Label" type="Label" parent="Options Menu/Options Panel/Overall Margins/Main H Splitter/Right Panel/Right Panel Margins/Right Panel Vbox"]
 layout_mode = 2
 theme = ExtResource("1_yiv4o")
 text = "Master Volume"
 
-[node name="HSlider" type="HSlider" parent="Options Menu/Options Panel/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Master Volume Slider" type="HSlider" parent="Options Menu/Options Panel/Overall Margins/Main H Splitter/Right Panel/Right Panel Margins/Right Panel Vbox"]
 layout_mode = 2
 value = 100.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Label2" type="Label" parent="Options Menu/Options Panel/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Music Volume Label" type="Label" parent="Options Menu/Options Panel/Overall Margins/Main H Splitter/Right Panel/Right Panel Margins/Right Panel Vbox"]
 layout_mode = 2
 theme = ExtResource("1_yiv4o")
 text = "Music Volume"
 
-[node name="HSlider2" type="HSlider" parent="Options Menu/Options Panel/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Music Volume Slider" type="HSlider" parent="Options Menu/Options Panel/Overall Margins/Main H Splitter/Right Panel/Right Panel Margins/Right Panel Vbox"]
 layout_mode = 2
 value = 100.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Label3" type="Label" parent="Options Menu/Options Panel/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SFX Volume Label" type="Label" parent="Options Menu/Options Panel/Overall Margins/Main H Splitter/Right Panel/Right Panel Margins/Right Panel Vbox"]
 layout_mode = 2
 theme = ExtResource("1_yiv4o")
 text = "SFX Volume"
 
-[node name="HSlider3" type="HSlider" parent="Options Menu/Options Panel/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SFX Volume Slider" type="HSlider" parent="Options Menu/Options Panel/Overall Margins/Main H Splitter/Right Panel/Right Panel Margins/Right Panel Vbox"]
 layout_mode = 2
 value = 100.0
 metadata/_edit_use_anchors_ = true
-
-[node name="PanelContainer2" type="PanelContainer" parent="Options Menu/Options Panel"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = 5.0
-offset_right = 187.0
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Options Menu/Options Panel/PanelContainer2"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Options Menu/Options Panel/PanelContainer2/MarginContainer"]
-layout_mode = 2
-
-[node name="Back Button" type="Button" parent="Options Menu/Options Panel/PanelContainer2/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme = ExtResource("1_yiv4o")
-theme_override_font_sizes/font_size = 40
-text = "Back"
 
 [node name="Audio Manager" type="Node" parent="."]
 script = SubResource("GDScript_mdr2u")
@@ -148,4 +172,4 @@ bus = &"Music"
 [connection signal="pressed" from="Main Menu Buttons/Start Button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Main Menu Buttons/Options Button" to="Options Menu" method="_on_options_button_pressed"]
 [connection signal="pressed" from="Main Menu Buttons/Quit Button" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="Options Menu/Options Panel/PanelContainer2/MarginContainer/VBoxContainer/Back Button" to="Options Menu" method="_on_back_button_pressed"]
+[connection signal="pressed" from="Options Menu/Options Panel/Overall Margins/Main H Splitter/Left Panel/Left Panel Margins/Left Panel VBox/Back Button" to="Options Menu" method="_on_back_button_pressed"]
