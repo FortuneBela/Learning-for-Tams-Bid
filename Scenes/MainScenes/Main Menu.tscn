@@ -1,14 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://blevywt6ly8n8"]
+[gd_scene load_steps=6 format=3 uid="uid://blevywt6ly8n8"]
 
 [ext_resource type="Theme" uid="uid://cnjo0f571voku" path="res://Scenes/FontScenes/Main Menu Buttons.tres" id="1_yiv4o"]
 [ext_resource type="Script" uid="uid://ngdiifq5ciko" path="res://Scripts/main_menu.gd" id="1_ym8oi"]
 [ext_resource type="Script" uid="uid://d2h711utmd6db" path="res://Scripts/options_menu.gd" id="3_rnwuk"]
 [ext_resource type="AudioStream" uid="uid://pq1sspg3kwc8" path="res://Assets/Audio/Music/Noire Music Bundle/Menu - It Doesn't Add Up Vinyl.wav" id="4_mdr2u"]
 [ext_resource type="StyleBox" uid="uid://cvueednvnt2ca" path="res://Scenes/FontScenes/Main Menu Style.tres" id="4_mjyq2"]
-
-[sub_resource type="GDScript" id="GDScript_mdr2u"]
-script/source = "extends Node
-"
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -137,7 +133,10 @@ text = "Master Volume"
 
 [node name="Master Volume Slider" type="HSlider" parent="Options Menu/Options Panel/Overall Margins/Main H Splitter/Right Panel/Right Panel Margins/Right Panel Vbox"]
 layout_mode = 2
-value = 100.0
+theme = ExtResource("1_yiv4o")
+max_value = 1.0
+step = 0.05
+value = 1.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Music Volume Label" type="Label" parent="Options Menu/Options Panel/Overall Margins/Main H Splitter/Right Panel/Right Panel Margins/Right Panel Vbox"]
@@ -147,7 +146,10 @@ text = "Music Volume"
 
 [node name="Music Volume Slider" type="HSlider" parent="Options Menu/Options Panel/Overall Margins/Main H Splitter/Right Panel/Right Panel Margins/Right Panel Vbox"]
 layout_mode = 2
-value = 100.0
+theme = ExtResource("1_yiv4o")
+max_value = 1.0
+step = 0.05
+value = 1.0
 metadata/_edit_use_anchors_ = true
 
 [node name="SFX Volume Label" type="Label" parent="Options Menu/Options Panel/Overall Margins/Main H Splitter/Right Panel/Right Panel Margins/Right Panel Vbox"]
@@ -157,15 +159,17 @@ text = "SFX Volume"
 
 [node name="SFX Volume Slider" type="HSlider" parent="Options Menu/Options Panel/Overall Margins/Main H Splitter/Right Panel/Right Panel Margins/Right Panel Vbox"]
 layout_mode = 2
-value = 100.0
+theme = ExtResource("1_yiv4o")
+max_value = 1.0
+step = 0.05
+value = 1.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Audio Manager" type="Node" parent="."]
-script = SubResource("GDScript_mdr2u")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio Manager"]
 stream = ExtResource("4_mdr2u")
-volume_db = -30.0
+volume_db = -20.0
 autoplay = true
 bus = &"Music"
 
@@ -173,3 +177,6 @@ bus = &"Music"
 [connection signal="pressed" from="Main Menu Buttons/Options Button" to="Options Menu" method="_on_options_button_pressed"]
 [connection signal="pressed" from="Main Menu Buttons/Quit Button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Options Menu/Options Panel/Overall Margins/Main H Splitter/Left Panel/Left Panel Margins/Left Panel VBox/Back Button" to="Options Menu" method="_on_back_button_pressed"]
+[connection signal="value_changed" from="Options Menu/Options Panel/Overall Margins/Main H Splitter/Right Panel/Right Panel Margins/Right Panel Vbox/Master Volume Slider" to="Options Menu" method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="Options Menu/Options Panel/Overall Margins/Main H Splitter/Right Panel/Right Panel Margins/Right Panel Vbox/Music Volume Slider" to="Options Menu" method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="Options Menu/Options Panel/Overall Margins/Main H Splitter/Right Panel/Right Panel Margins/Right Panel Vbox/SFX Volume Slider" to="Options Menu" method="_on_sfx_volume_slider_value_changed"]

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cauucy1y37knj"
+path="res://.godot/imported/Movement and Actions Jump 002.wav-a45c9b29abb96c38ec64a4b4e82bbfde.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/Movement and Actions Jump 002.wav"
+dest_files=["res://.godot/imported/Movement and Actions Jump 002.wav-a45c9b29abb96c38ec64a4b4e82bbfde.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

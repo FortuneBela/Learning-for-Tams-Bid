@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var audio_player = $"../AudioStreamPlayer"
+
 @export var move_speed : float = 100
 @export var acceleration : float = 50
 @export var braking : float = 20
@@ -25,5 +27,6 @@ func _physics_process(delta):
 	#this one affects jumping
 	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = -jump_force
+		audio_player.play()
 	
 	move_and_slide()
